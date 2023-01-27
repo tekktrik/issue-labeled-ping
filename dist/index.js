@@ -9797,7 +9797,7 @@ async function run() {
     }
 
     message = message.replaceAll("{user}", "@".concat(user));
-    message = formattedMessage.replaceAll("{label}", label);
+    message = message.replaceAll("{label}", label);
     
     if (context.payload.label.name == label) {
       await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
