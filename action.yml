@@ -18,7 +18,7 @@ inputs:
       above fields, with {user} tagging the specified user.  If the message
       does not include {user}, then '{user} - ' will be included at the
       start of the message.
-    default: '{user} - {label} label was applied.'
+    default: '{user} - "{label}" label was applied.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
