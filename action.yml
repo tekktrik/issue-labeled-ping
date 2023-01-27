@@ -1,4 +1,4 @@
-name: 'Simple Issue Labeled Ping'
+name: 'Issue Labeled Ping'
 description: 'Notify a specified user when a specific label is applied'
 inputs:
   github-token:

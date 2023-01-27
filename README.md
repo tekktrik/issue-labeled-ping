@@ -1,4 +1,4 @@
-# Simple Issue Labeled Ping
+# Issue Labeled Ping
 
 Notify a user when an issue gets a specific label applied.
 
@@ -23,7 +23,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: tekktrik/issue-label-notifier@main
+      - uses: tekktrik/issue-labeled-ping@main
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             user: tekktrik
