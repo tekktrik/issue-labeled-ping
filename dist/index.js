@@ -9786,21 +9786,26 @@ async function run() {
 
     const label = core.getInput('label');
     const user = core.getInput('user');
+    let message = core.getInput('message');
 
     const owner = context.repo.owner;
     const repo = context.repo.repo
     const issueNumber = context.issue.number
 
-    const bodyStart = "Heads up @"
-    const body = bodyStart.concat(user, ' - the "', label, '" label was applied to this issue.')
+    if (!message.includes("{user}")) {
+      message = "{user} - ".concat(message)
+    }
+
+    message = message.replaceAll("{user}", "@".concat(user));
+    message = formattedMessage.replaceAll("{label}", label);
     
     if (context.payload.label.name == label) {
       await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
         owner: owner,
         repo: repo,
         issue_number: issueNumber.toString(),
-        body: body
-      })
+        body: message
+      });
     }
 
   } catch (error) {

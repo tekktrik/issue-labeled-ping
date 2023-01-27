@@ -1,8 +1,10 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Issue Label Notifier'
+description: 'Notify a specified user when a specific label is applied'
 inputs:
   github-token:
-    description: 'The github token needed to authenticate'
+    description:
+      The GitHub token needed to authenticate, must have write permessions
+      for issues
     required: true
   user:
     description: 'The user to notify'
@@ -10,9 +12,13 @@ inputs:
   label:
     description: 'The label to monitor'
     required: true
-outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  message:
+    description:
+      The message to write; {user} and {label} will be populated with the
+      above fields, with {user} tagging the specified user.  If the message
+      does not include {user}, then '{user} - ' will be included at the
+      start of the message.
+    default: '{user} - {label} label was applied.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
