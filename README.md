@@ -28,5 +28,5 @@ jobs:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             user: tekktrik
             label: wontfix
-            message: Hey {user} - the {label} label was applied!
+            message: Hey {user} - the "{label}" label was applied!
 ```
