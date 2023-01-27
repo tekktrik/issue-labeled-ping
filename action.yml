@@ -1,4 +1,4 @@
-name: 'Issue Label Notifier'
+name: 'Simple Issue Label Pinger'
 description: 'Notify a specified user when a specific label is applied'
 inputs:
   github-token:

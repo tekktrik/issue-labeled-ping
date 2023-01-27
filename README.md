@@ -1,4 +1,4 @@
-# issue-label-notifier
+# Simple Issue Label Pinger
 
 Notify a user when an issue gets a specific label applied.
 
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: tekktrik/issue-label-notifier@main
         with:
-            github-token: ${{ secrets.ISSUES_TOKEN }}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             user: tekktrik
             label: wontfix
             message: Hey {user} - the {label} label was applied!
