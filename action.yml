@@ -1,10 +1,15 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  github-token:
+    description: 'The github token needed to authenticate'
     required: true
-    default: '1000'
+  user:
+    description: 'The user to notify'
+    required: true
+  label:
+    description: 'The label to monitor'
+    required: true
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
