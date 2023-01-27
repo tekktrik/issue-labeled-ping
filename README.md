@@ -1,4 +1,4 @@
-# Simple Issue Label Pinger
+# Simple Issue Label Ping
 
 Notify a user when an issue gets a specific label applied.
 
