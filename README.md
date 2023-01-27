@@ -23,7 +23,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: tekktrik/issue-labeled-ping@main
+      - uses: tekktrik/issue-labeled-ping@v1
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             user: tekktrik
