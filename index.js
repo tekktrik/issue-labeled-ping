@@ -1,18 +1,34 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const github = require('@actions/github')
+
+const context = github.context
 
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const myToken = core.getInput('github-token');
+    const octokit = github.getOctokit(myToken);
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+    const label = core.getInput('label');
+    const user = core.getInput('user');
 
-    core.setOutput('time', new Date().toTimeString());
+    const owner = context.repo.owner;
+    const repo = context.repo.repo
+    const issueNumber = context.issue.number
+
+    const bodyStart = "Heads up @"
+    const body = bodyStart.concat(user, ' - the "', label, '" label was applied to this issue.')
+    
+    if (context.payload.label.name == label) {
+      await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+        owner: owner,
+        repo: repo,
+        issue_number: issueNumber.toString(),
+        body: body
+      })
+    }
+
   } catch (error) {
     core.setFailed(error.message);
   }
