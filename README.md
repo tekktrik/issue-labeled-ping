@@ -20,6 +20,8 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: tekktrik/issue-label-notifier@main
         with:
