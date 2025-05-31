@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: tekktrik/issue-labeled-ping@v1
         with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+            github-token: ${{ secrets.GH_TOKEN }}
             user: tekktrik
             label: wontfix
             message: Hey {user} - the "{label}" label was applied!
