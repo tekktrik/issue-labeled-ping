@@ -23,9 +23,9 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: tekktrik/issue-labeled-ping@v1
+      - uses: tekktrik/issue-labeled-ping@v2
         with:
-            github-token: ${{ secrets.GH_TOKEN }}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
             user: tekktrik
             label: wontfix
             message: Hey {user} - the "{label}" label was applied!
