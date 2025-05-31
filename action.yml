@@ -1,5 +1,15 @@
+# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-License-Identifier: MIT
+
 name: 'Issue Labeled Ping'
 description: 'Notify a specified user when a specific label is applied'
+author: Alec "tekktrik" Delaney
+
+branding:
+  icon: 'at-sign'
+  color: 'blue'
+
+
 inputs:
   github-token:
     description:
@@ -19,9 +29,23 @@ inputs:
       does not include {user}, then '{user} - ' will be included at the
       start of the message.
     default: '{user} - "{label}" label was applied.'
+
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
-branding:
-  icon: 'at-sign'
-  color: 'blue'
+  using: 'composite'
+  steps:
+    - name: Install uv
+      shell: bash
+      run: pipx install uv
+    - name: Install the required version on python
+      shell: bash
+      run: uv python install --project ${{ github.action_path }}
+    - name: Run the label checking action
+      shell: bash
+      run: uv run ${{ github.action_path }}/action.py
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_USER: ${{ inputs.user }}
+        INPUT_LABEL: ${{ inputs.label }}
+        INPUT_MESSAGE: ${{ inputs.message }}
+        ACTION_REPO: ${{ github.repository }}
+        ACTION_EVENT_PATH: ${{ github.event_path }}

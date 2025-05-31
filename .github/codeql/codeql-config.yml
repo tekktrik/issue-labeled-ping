@@ -1,5 +1,4 @@
-name: "javascript-action CodeQL config"
+# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-License-Identifier: MIT
 
-paths-ignore: 
-  - node_modules
-  - dist
+name: "python-action CodeQL config"
