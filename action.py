@@ -23,8 +23,8 @@ try:
     label = os.environ["INPUT_LABEL"]
     message = os.environ["INPUT_MESSAGE"]
 
-    repo = os.environ["GITHUB_REPOSITORY"]
-    event_path = os.environ["GITHUB_EVENT_PATH"]
+    repo = os.environ["ACTION_REPO"]
+    event_path = os.environ["ACTION_EVENT_PATH"]
 
     with open(event_path) as jsonfile:
         event = json.load(jsonfile)
@@ -48,5 +48,6 @@ try:
     g_issue.create_comment(message)
 
 except:
+
     print("Something went wrong and the ping action failed.")
     sys.exit(1)

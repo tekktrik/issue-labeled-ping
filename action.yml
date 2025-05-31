@@ -42,3 +42,10 @@ runs:
     - name: Run the label checking action
       shell: bash
       run: uv run ${{ github.action_path }}/action.py
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_USER: ${{ inputs.user }}
+        INPUT_LABEL: ${{ inputs.label }}
+        INPUT_MESSAGE: ${{ inputs.message }}
+        ACTION_REPO: ${{ github.repository }}
+        ACTION_EVENT_PATH: ${{ github.event_path }}
