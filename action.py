@@ -10,6 +10,7 @@
 
 """Script for commenting on an issue if a matching label is added to it."""
 
+import json
 import os
 import sys
 
@@ -22,10 +23,14 @@ try:
     label = os.environ["INPUT_LABEL"]
     message = os.environ["INPUT_MESSAGE"]
 
-    repo = os.environ["ACTION_REPO"]
+    repo = os.environ["GITHUB_REPOSITORY"]
+    event_path = os.environ["GITHUB_EVENT_PATH"]
 
-    label_used = os.environ["ACTION_LABEL_USED"]
-    issue_number = int(os.environ["ACTION_ISSUE_NUMBER"])
+    with open(event_path) as jsonfile:
+        event = json.load(jsonfile)
+
+    issue_number = event["issue"]["number"]
+    label_used = event["label"]["name"]
 
     if "{user}" not in message:
         message = "{user} - " + message

@@ -31,13 +31,11 @@ inputs:
     default: '{user} - "{label}" label was applied.'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  env:
-    INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
-    INPUT_USER: ${{ inputs.user }}
-    INPUT_LABEL: ${{ inputs.label }}
-    INPUT_MESSAGE: ${{ inputs.message }}
-    ACTION_REPO: ${{ github.repository_owner }}
-    ACTION_ISSUE_NUMBER: ${{ github.event.issue.number }}
-    ACTION_LABEL_USED: ${{ github.event.label.name }}
+  using: 'composite'
+  steps:
+    - name: Install uv
+      run: pipx install uv
+    - name: Install the required version on python
+      run: uv python install --project ${{ github.action_path }}
+    - name: Run the label checking action
+      run: uv run ${{ github.action_path }}/action.py
