@@ -34,8 +34,11 @@ runs:
   using: 'composite'
   steps:
     - name: Install uv
+      shell: bash
       run: pipx install uv
     - name: Install the required version on python
+      shell: bash
       run: uv python install --project ${{ github.action_path }}
     - name: Run the label checking action
+      shell: bash
       run: uv run ${{ github.action_path }}/action.py
