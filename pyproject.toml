@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2023 Alec Delane5
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "issue-labeled-ping"
+description = " Notify someone when a specific issue label is applied"
+version = "2.0.0"
+requires-python = ">=3.13.0"
+readme = "README.md"
+authors = [
+    {name = "Alec Delaney", email = "tekktrik@gmail.com"}
+]
+urls = {Homepage = "https://github.com/tekktrik/issue-labeled-ping"}
+license = "MIT"
+dependencies = [
+    "pygithub>=2.6.1",
+]
+
+[tool.ruff.lint]
+select = ["D", "PL", "I"]
+ignore = ["D213", "D203"]
