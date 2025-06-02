@@ -50,6 +50,7 @@ try:
 except BaseException as err:
 
     print("Something went wrong and the ping action failed.")
+    print(type(err))
     print(err)
     print(err.args)
     sys.exit(1)
