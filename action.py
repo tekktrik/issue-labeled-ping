@@ -47,7 +47,8 @@ try:
     g_issue = g_repo.get_issue(issue_number)
     g_issue.create_comment(message)
 
-except:
+except BaseException as err:
 
     print("Something went wrong and the ping action failed.")
+    print(err)
     sys.exit(1)
