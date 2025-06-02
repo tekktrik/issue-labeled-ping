@@ -40,7 +40,7 @@ try:
 
     if label_used != label:
         print("No users were notified.")
-        return
+        sys.exit(0)
 
     g = github.Github(token)
     g_repo = g.get_repo(repo)
