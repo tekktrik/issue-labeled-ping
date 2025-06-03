@@ -22,6 +22,13 @@ try:
     user = os.environ["INPUT_USER"]
     label = os.environ["INPUT_LABEL"]
     message = os.environ["INPUT_MESSAGE"]
+    assign_to_user = os.environ["INPUT_ASSIGN_TO_USER"]
+
+    if assign_to_user not in ("true", "false"):
+        print("'assign-to-user' input must be either 'true' or 'false'")
+        sys.exit(1)
+
+    assign_to_user = assign_to_user == "true"
 
     repo = os.environ["ACTION_REPO"]
     event_path = os.environ["ACTION_EVENT_PATH"]
@@ -45,6 +52,10 @@ try:
     g = github.Github(token)
     g_repo = g.get_repo(repo)
     g_issue = g_repo.get_issue(issue_number)
+
+    if assign_to_user:
+        g_issue.add_to_assignees(user)
+
     g_issue.create_comment(message)
 
 except SystemExit as err:

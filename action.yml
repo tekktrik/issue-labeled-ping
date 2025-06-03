@@ -29,6 +29,11 @@ inputs:
       does not include {user}, then '{user} - ' will be included at the
       start of the message.
     default: '{user} - "{label}" label was applied.'
+  assign-to-user:
+    description:
+      Assign the issue to the requested user as well.  Can be either "true"
+      or "false" (default is false).
+    default: 'false'
 
 runs:
   using: 'composite'
@@ -47,5 +52,6 @@ runs:
         INPUT_USER: ${{ inputs.user }}
         INPUT_LABEL: ${{ inputs.label }}
         INPUT_MESSAGE: ${{ inputs.message }}
+        INPUT_ASSIGN_TO_USER: ${{ inputs.assign-to-user }}
         ACTION_REPO: ${{ github.repository }}
         ACTION_EVENT_PATH: ${{ github.event_path }}
