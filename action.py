@@ -22,13 +22,13 @@ try:
     user = os.environ["INPUT_USER"]
     label = os.environ["INPUT_LABEL"]
     message = os.environ["INPUT_MESSAGE"]
-    assign_to_user = os.environ["INPUT_ASSIGN_TO_USER"]
+    assign_to_user = os.environ["INPUT_ASSIGN_TO_USER"].lower()
 
-    if assign_to_user not in ("true", "false"):
-        print("'assign-to-user' input must be either 'true' or 'false'")
+    if assign_to_user not in ("y", "yes", "n", "no", "true", "false", "on", "off"):
+        print("'assign-to-user' input must be boolean")
         sys.exit(1)
 
-    assign_to_user = assign_to_user == "true"
+    assign_to_user = assign_to_user in ("y", "yes", "true", "on")
 
     repo = os.environ["ACTION_REPO"]
     event_path = os.environ["ACTION_EVENT_PATH"]
