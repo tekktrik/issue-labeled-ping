@@ -8,6 +8,9 @@ The default message is '{user} - {label} label was applied.'.  If the
 message does include '{user}', the message will automatically start
 with '{user} - ' and then include the provided message.
 
+If you would like to assign the issue to the user as well, you can
+set "assign-to-user" to "true" (default is "false").
+
 Note that a token with write permissions for issues is required.
 
 ```yaml
@@ -29,4 +32,5 @@ jobs:
             user: tekktrik
             label: wontfix
             message: Hey {user} - the "{label}" label was applied!
+            assign-to-user: false
 ```
