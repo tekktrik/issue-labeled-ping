@@ -55,6 +55,7 @@ try:
 
     if assign_to_user:
         g_issue.add_to_assignees(user)
+        print(f"{user} has been added as an assignee")
 
     g_issue.create_comment(message)
 
